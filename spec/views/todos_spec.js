@@ -1,17 +1,14 @@
-describe('FooView', function() {
+describe('Todos', function() {
   beforeEach(function() {
     this.controller = App.TodosController.create();
-    this.subject = App.TodosView.create({ controller: this.controller });
-    this.subject.append();
+    Em.run.sync();
   });
 
   afterEach(function() {
-    this.subject && this.subject.remove();
+    this.controller.destroy();
   });
 
-  it("renders the foo's favoriteFood", function() {
-    this.controller.set('content', [{name: "todo1", done: true}]);
-    Em.run.sync();
-    expect(this.subject.$('.todos').length).toBe(1);
+  it("shows the list of todos", function() {
+    expect($('.todos').length).toBe(1);
   });
 });
